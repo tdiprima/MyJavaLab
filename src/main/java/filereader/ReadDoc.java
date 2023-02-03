@@ -1,6 +1,7 @@
 /*
  * Apache POI - the Java API for Microsoft Documents
  * https://www.apache.org/dyn/closer.lua/poi/release/bin/poi-bin-5.2.3-20220909.tgz
+ * How to import Apache POI jars https://youtu.be/8173EAjzF6M
  */
 
 package filereader;
