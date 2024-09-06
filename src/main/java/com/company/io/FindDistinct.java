@@ -1,7 +1,11 @@
 package com.company.io;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class FindDistinct {
 
@@ -149,12 +153,9 @@ public class FindDistinct {
                 pos = inputStr.indexOf(find);
                 ret = inputStr.substring(0, pos);
 
-                if (ret.contains("on"))
-                {
+                if (ret.contains("on")) {
                     ret = "";
-                }
-                else
-                {
+                } else {
                     if (ret.contains("\"")) {
                         ret = ret.replaceAll("\"", "");
                     }
