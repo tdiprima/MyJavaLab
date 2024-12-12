@@ -7,7 +7,7 @@ import org.apache.jena.query.Dataset;
 import org.apache.jena.query.ResultSet;
 import org.dcm4che3.tool.dicomimageio.DicomImageReaderSpi;
 
-public class Main {
+public class Obscura {
     public static void main(String[] args) {
         try {
             // Example: Read a DICOM image
