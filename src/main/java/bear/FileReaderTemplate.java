@@ -4,10 +4,11 @@ import java.io.*;
 import java.util.*;
 
 public class FileReaderTemplate {
+
     public static void main(String[] args) {
         Set<String> stringSet = new HashSet<String>();
         try {
-            FileReader fileReader = new FileReader("/Users/tdiprima/Downloads/ZOOM.txt");
+            FileReader fileReader = new FileReader(System.getProperty("user.home") + "/Downloads/ZOOM.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;

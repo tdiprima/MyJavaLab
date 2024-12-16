@@ -4,12 +4,13 @@ import java.io.*;
 import java.util.*;
 
 public class FindDistinct {
+
     static FileReader fileReader;
     static BufferedReader bufferedReader;
 
     public static void main(String[] args) {
         // The name of the file to open.
-        String fileName = "/Users/tdiprima/Downloads/lala.txt";
+        String fileName = System.getProperty("user.home") + "/Downloads/lala.txt";
         // findDupe(fileName);
         // process(fileName, "");
         process(fileName, ":");
@@ -17,6 +18,7 @@ public class FindDistinct {
 
     /**
      * Find the duplicated line in a large file Java
+     *
      * @param file
      */
     public static void findDupe(String file) {
@@ -49,7 +51,6 @@ public class FindDistinct {
         } catch (IOException e) {
         }
     }
-
 
     public static void process(String fileName, String search) {
         String line;
@@ -160,7 +161,6 @@ public class FindDistinct {
         ret = ret.trim();
         return ret;
     }
-
 
     /**
      * Distinct or Repeated

@@ -16,7 +16,7 @@ class Until5pm {
   }
 
   /**
-   * Insert the method's description here.
+   * Main method.
    * Creation date: (11/25/2002 3:18:06 PM)
    *
    * @param args java.lang.String[]

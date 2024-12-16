@@ -4,16 +4,22 @@
 package com.company.io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class FileReaderTemplate1 {
+public class FileReader3 {
 
     public static void main(String[] args) {
-//        String files[] = {"heatmap.out"};
+//        String[] files = {"heatmap.out"};
 //        for (int i = 0; i < files.length; i++) {
 //            de_duplicate(files[i]);
 //        }
-        template("/Users/tdiprima/restained/folders.list");
+
+        String homeDirectory = System.getProperty("user.home");
+//        template(homeDirectory + "/restained/folders.list");
+//        rewriteHistory();
+//        de_duplicate(homeDirectory + "/Desktop/old_vs_new.sh");
+        template(homeDirectory + "/Desktop/old_vs_new.sh");
     }
 
     public static void de_duplicate(String fileName) {
@@ -23,13 +29,13 @@ public class FileReaderTemplate1 {
         Set<String> stringSet = new HashSet<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
 
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName + ".out"), "utf-8"));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName + ".out"), StandardCharsets.UTF_8));
 
             while ((line = bufferedReader.readLine()) != null) {
                 line = line.trim();
@@ -52,29 +58,22 @@ public class FileReaderTemplate1 {
 
     public static void template(String fileName) {
 
-        System.out.println("START");
-
         Set<String> stringSet = new HashSet<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
 
-
             while ((line = bufferedReader.readLine()) != null) {
                 line = line.trim();
                 stringSet.add(line);
-
-//                if (line.contains("0,NONE,NONE,NONE")) {
-//                    System.out.println(line);
-//                }
-//                if (!line.startsWith("#")) {
-//                    stringSet.add(line);
-//                }
-
+                if (line.contains("prad-new-model") || line.contains("prad_new_model")) {
+                    System.out.println(line);
+                    stringSet.add(line);
+                }
             }
 
             Iterator it = stringSet.iterator();
@@ -82,20 +81,6 @@ public class FileReaderTemplate1 {
                 System.out.println(it.next());
             }
 
-            /*
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("PAAD_188.csv"), "utf-8"));
-            writer.write("path,studyid,clinicaltrialsubjectid,imageid\n");
-            StringBuffer sb;
-             */
-
-            /*
-            System.out.println("CollectionName,studyid,clinicaltrialsubjectid,imageid,filename,type");
-            while ((line = bufferedReader.readLine()) != null) {
-                map_loader(line);
-            }
-             */
-
-            // writer.close();
             bufferedReader.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -109,7 +94,7 @@ public class FileReaderTemplate1 {
         int last = arrOfStr.length;
         String x = arrOfStr[last - 1];
         x = x.substring(0, x.indexOf(".")) + ".svs";
-        System.out.println("ln -s " + line.trim() + " /home/tammy/temp/" + x);
+        System.out.println("ln -s " + line.trim() + " " + System.getProperty("user.home") + "/temp/" + x);
     }
 
     // FIND IN PathDB httplinks.csv, CREATE manifest.csv
@@ -117,8 +102,9 @@ public class FileReaderTemplate1 {
         // IMPORTANT NOTE!
         // REMOVE CSV HEADER FIRST!
         // path,studyid,subjectid,imageid,"Image URL"
-        String fileName = "/Users/tdiprima/myList.list";
-        String fileName1 = "/Users/tdiprima/seervtrbcpilot.csv";
+        String homeDirectory = System.getProperty("user.home");
+        String fileName = homeDirectory + "/myList.list";
+        String fileName1 = homeDirectory + "/seervtrbcpilot.csv";
         String line;
         String line1;
 
@@ -161,8 +147,9 @@ public class FileReaderTemplate1 {
     }
 
     public static void compare_two_files() {
-        String fileName = "/Users/tdiprima/thresh1.list";
-        String fileName1 = "/Users/tdiprima/seervtrbcpilot.csv";
+        String homeDirectory = System.getProperty("user.home");
+        String fileName = homeDirectory + "/thresh1.list";
+        String fileName1 = homeDirectory + "/seervtrbcpilot.csv";
         String line;
         String line1;
 
@@ -293,8 +280,8 @@ public class FileReaderTemplate1 {
         List<String> temps = new ArrayList<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -320,8 +307,9 @@ public class FileReaderTemplate1 {
 
         System.out.print(line);
 
-        if (count % 2 == 0)
+        if (count % 2 == 0) {
             System.out.println();
+        }
 
     }
 
@@ -330,7 +318,6 @@ public class FileReaderTemplate1 {
         System.out.println(ret);
         return ret;
     }
-
 
     public static void stringParseExample() {
         String line = "bla bla blah";
@@ -341,13 +328,13 @@ public class FileReaderTemplate1 {
     }
 
     public static void parseErrorsFromConsole() {
-        String fileName = "/Users/tdiprima/Desktop/biglogfile.log";
+        String fileName = System.getProperty("user.home") + "/Desktop/biglogfile.log";
 
         String line;
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             boolean flag = false;
@@ -374,14 +361,12 @@ public class FileReaderTemplate1 {
     }
 
     /**
-     * Ha.
-     * Remove the first n chars
-     * from each line of history file.
+     * Ha. Remove the first n chars from each line of history file.
      */
     public static void rewriteHistory() {
 
         // TODO: history > history-file.sh
-        String s = "/Users/tdiprima/Desktop/han_data04A.list";
+        String s = System.getProperty("user.home") + "/Desktop/old_vs_new.sh";
         int len = 4;
 
         try {
@@ -390,13 +375,14 @@ public class FileReaderTemplate1 {
             String l;
             while ((l = br.readLine()) != null) {
                 try {
-                    int len1 = l.trim().length();
+                    String str = l.trim();
+                    int len1 = str.length();
                     if (len1 > 0) {
-                        String x = (l.trim().substring(len)).trim();
-                        if (x.contains("/")) {
-                            System.out.println(x.substring(x.indexOf("/")));
-                        }
-
+                        String x = (str.substring(len)).trim();
+                        System.out.println(x);
+//                        if (x.contains("/")) {
+//                            System.out.println(x.substring(x.indexOf("/")));
+//                        }
                     }
                 } catch (StringIndexOutOfBoundsException iii) {
                     System.out.println("here:" + l);
@@ -407,6 +393,5 @@ public class FileReaderTemplate1 {
         } finally {
             // System.out.println("\nTHE END\n");
         }
-
     }
 }

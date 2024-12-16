@@ -4,82 +4,80 @@
 package com.company.io;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class FileReaderTemplate2 {
+public class FileReader1 {
 
     public static void main(String[] args) {
-//        String[] files = {"heatmap.out"};
-//        for (int i = 0; i < files.length; i++) {
-//            de_duplicate(files[i]);
-//        }
-//        template("/Users/tdiprima/restained/folders.list");
-//        rewriteHistory();
-//        de_duplicate("/Users/tdiprima/Desktop/old_vs_new.sh");
-        template("/Users/tdiprima/Desktop/old_vs_new.sh");
+        // rewriteHistory();
+        template();
+        // two_files();
+        // compare_two_files();
     }
 
-    public static void de_duplicate(String fileName) {
+    public static void template() {
+        String fileName = System.getProperty("user.home") + "/job213/grand.out";
 
-        System.out.println(fileName);
+        System.out.println("START");
 
-        Set<String> stringSet = new HashSet<String>();
-
+        // Set<String> stringSet = new HashSet<String>();
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
 
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName + ".out"), StandardCharsets.UTF_8));
-
+            int count = 100014;
             while ((line = bufferedReader.readLine()) != null) {
-                line = line.trim();
-                stringSet.add(line);
-            }
+                count++;
 
-            Iterator it = stringSet.iterator();
-            while (it.hasNext()) {
-                writer.write(it.next() + "\n");
-            }
+                if (line.trim().equalsIgnoreCase("#!/usr/bin/env bash")) {
+                    continue;
+                }
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+                if (line.trim().startsWith("#")) {
+                    continue;
+                }
+                try {
+                    if (line.contains("-")) {
+                        String[] blah = line.split("-");
+                        int cnt = Integer.parseInt(blah[1]);
+                        if (cnt != count) {
+                            System.out.println(cnt + " != " + count);
+                            break;
+                        }
+                        // stringSet.add(blah[1]);
+                    }
+                    // System.out.println(line.substring(0, line.indexOf("csv")) + "csv /data/tammy/pyradiomics/" + blah[4].replace("multires", "pyradiomics") + ".csv");
 
-            bufferedReader.close();
-            writer.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.exit(0);
-        }
-
-    }
-
-    public static void template(String fileName) {
-
-        Set<String> stringSet = new HashSet<String>();
-
-        try {
-            FileReader fileReader =
-                    new FileReader(fileName);
-
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-
-
-            while ((line = bufferedReader.readLine()) != null) {
-                line = line.trim();
-                stringSet.add(line);
-                if (line.contains("prad-new-model") || line.contains("prad_new_model")) {
-                    System.out.println(line);
-                    stringSet.add(line);
+                } catch (Exception fu) {
+                    continue;
                 }
             }
 
+            /*
             Iterator it = stringSet.iterator();
             while (it.hasNext()) {
                 System.out.println(it.next());
             }
+             */
 
+ /*
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("PAAD_188.csv"), "utf-8"));
+            writer.write("path,studyid,clinicaltrialsubjectid,imageid\n");
+            StringBuffer sb;
+             */
+
+ /*
+            System.out.println("CollectionName,studyid,clinicaltrialsubjectid,imageid,filename,type");
+            while ((line = bufferedReader.readLine()) != null) {
+                map_loader(line);
+            }
+             */
+            // writer.close();
             bufferedReader.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -277,8 +275,8 @@ public class FileReaderTemplate2 {
         List<String> temps = new ArrayList<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -304,8 +302,9 @@ public class FileReaderTemplate2 {
 
         System.out.print(line);
 
-        if (count % 2 == 0)
+        if (count % 2 == 0) {
             System.out.println();
+        }
 
     }
 
@@ -314,7 +313,6 @@ public class FileReaderTemplate2 {
         System.out.println(ret);
         return ret;
     }
-
 
     public static void stringParseExample() {
         String line = "bla bla blah";
@@ -330,8 +328,8 @@ public class FileReaderTemplate2 {
         String line;
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             boolean flag = false;
@@ -358,14 +356,12 @@ public class FileReaderTemplate2 {
     }
 
     /**
-     * Ha.
-     * Remove the first n chars
-     * from each line of history file.
+     * Ha. Remove the first n chars from each line of history file.
      */
     public static void rewriteHistory() {
 
         // TODO: history > history-file.sh
-        String s = "/Users/tdiprima/Desktop/old_vs_new.sh";
+        String s = "/Users/tdiprima/Desktop/segloader-commands.sh";
         int len = 4;
 
         try {
@@ -374,14 +370,8 @@ public class FileReaderTemplate2 {
             String l;
             while ((l = br.readLine()) != null) {
                 try {
-                    String str = l.trim();
-                    int len1 = str.length();
-                    if (len1 > 0) {
-                        String x = (str.substring(len)).trim();
-                        System.out.println(x);
-//                        if (x.contains("/")) {
-//                            System.out.println(x.substring(x.indexOf("/")));
-//                        }
+                    if (l.trim().length() > 0) {
+                        System.out.println((l.trim().substring(len)).trim());
                     }
                 } catch (StringIndexOutOfBoundsException iii) {
                     System.out.println("here:" + l);
@@ -390,7 +380,8 @@ public class FileReaderTemplate2 {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // System.out.println("\nTHE END\n");
+            System.out.println("\nTHE END\n");
         }
+
     }
 }

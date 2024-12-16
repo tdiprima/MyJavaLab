@@ -13,7 +13,8 @@ public class FiberOne {
         try {
             // String contents = readIt("");
             // writeIt(contents, "Han.csv");
-            processFiles("/Users/tdiprima/workspace/filtering");
+            String home = System.getProperty("user.home");
+            processFiles(home + "/workspace/filtering");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -32,7 +33,6 @@ public class FiberOne {
         }
 
     }
-
 
     public static String readIt(String fileWithPath) throws Exception {
 

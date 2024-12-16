@@ -6,66 +6,79 @@ package com.company.io;
 import java.io.*;
 import java.util.*;
 
-public class FileReaderTemplate {
+public class FileReader2 {
 
     public static void main(String[] args) {
-        // rewriteHistory();
-        template();
-        // two_files();
-        // compare_two_files();
+//        String files[] = {"heatmap.out"};
+//        for (int i = 0; i < files.length; i++) {
+//            de_duplicate(files[i]);
+//        }
+        template(System.getProperty("user.home") + "/restained/folders.list");
     }
 
-    public static void template() {
-        String fileName = "/Users/tdiprima/job213/grand.out";
+    public static void de_duplicate(String fileName) {
 
-        System.out.println("START");
+        System.out.println(fileName);
 
-        // Set<String> stringSet = new HashSet<String>();
+        Set<String> stringSet = new HashSet<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
 
-            int count = 100014;
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName + ".out"), "utf-8"));
+
             while ((line = bufferedReader.readLine()) != null) {
-                count++;
-
-                if (line.trim().equalsIgnoreCase("#!/usr/bin/env bash")) {
-                    continue;
-                }
-                if (line.trim().isEmpty()) {
-                    continue;
-                }
-                if (line.trim().startsWith("#")) {
-                    continue;
-                }
-                try {
-                    if (line.contains("-")) {
-                        String[] blah = line.split("-");
-                        int cnt = Integer.parseInt(blah[1]);
-                        if (cnt != count)
-                        {
-                            System.out.println(cnt + " != " + count);
-                            break;
-                        }
-                        // stringSet.add(blah[1]);
-                    }
-                    // System.out.println(line.substring(0, line.indexOf("csv")) + "csv /data/tammy/pyradiomics/" + blah[4].replace("multires", "pyradiomics") + ".csv");
-
-                } catch (Exception fu) {
-                    continue;
-                }
+                line = line.trim();
+                stringSet.add(line);
             }
 
-            /*
+            Iterator it = stringSet.iterator();
+            while (it.hasNext()) {
+                writer.write(it.next() + "\n");
+            }
+
+            bufferedReader.close();
+            writer.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.exit(0);
+        }
+
+    }
+
+    public static void template(String fileName) {
+
+        System.out.println("START");
+
+        Set<String> stringSet = new HashSet<String>();
+
+        try {
+            FileReader fileReader
+                    = new FileReader(fileName);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                line = line.trim();
+                stringSet.add(line);
+
+//                if (line.contains("0,NONE,NONE,NONE")) {
+//                    System.out.println(line);
+//                }
+//                if (!line.startsWith("#")) {
+//                    stringSet.add(line);
+//                }
+            }
+
             Iterator it = stringSet.iterator();
             while (it.hasNext()) {
                 System.out.println(it.next());
             }
-             */
 
             /*
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("PAAD_188.csv"), "utf-8"));
@@ -73,14 +86,12 @@ public class FileReaderTemplate {
             StringBuffer sb;
              */
 
-            /*
+ /*
             System.out.println("CollectionName,studyid,clinicaltrialsubjectid,imageid,filename,type");
             while ((line = bufferedReader.readLine()) != null) {
                 map_loader(line);
             }
              */
-
-
             // writer.close();
             bufferedReader.close();
         } catch (Exception ex) {
@@ -95,7 +106,7 @@ public class FileReaderTemplate {
         int last = arrOfStr.length;
         String x = arrOfStr[last - 1];
         x = x.substring(0, x.indexOf(".")) + ".svs";
-        System.out.println("ln -s " + line.trim() + " /home/tammy/temp/" + x);
+        System.out.println("ln -s " + line.trim() + " " + System.getProperty("user.home") + "/temp/" + x);
     }
 
     // FIND IN PathDB httplinks.csv, CREATE manifest.csv
@@ -103,8 +114,9 @@ public class FileReaderTemplate {
         // IMPORTANT NOTE!
         // REMOVE CSV HEADER FIRST!
         // path,studyid,subjectid,imageid,"Image URL"
-        String fileName = "/Users/tdiprima/myList.list";
-        String fileName1 = "/Users/tdiprima/seervtrbcpilot.csv";
+        String homeDirectory = System.getProperty("user.home");
+        String fileName = homeDirectory + "/myList.list";
+        String fileName1 = homeDirectory + "/seervtrbcpilot.csv";
         String line;
         String line1;
 
@@ -147,8 +159,9 @@ public class FileReaderTemplate {
     }
 
     public static void compare_two_files() {
-        String fileName = "/Users/tdiprima/thresh1.list";
-        String fileName1 = "/Users/tdiprima/seervtrbcpilot.csv";
+        String homeDirectory = System.getProperty("user.home");
+        String fileName = homeDirectory + "/thresh1.list";
+        String fileName1 = homeDirectory + "/seervtrbcpilot.csv";
         String line;
         String line1;
 
@@ -279,8 +292,8 @@ public class FileReaderTemplate {
         List<String> temps = new ArrayList<String>();
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -306,8 +319,9 @@ public class FileReaderTemplate {
 
         System.out.print(line);
 
-        if (count % 2 == 0)
+        if (count % 2 == 0) {
             System.out.println();
+        }
 
     }
 
@@ -316,7 +330,6 @@ public class FileReaderTemplate {
         System.out.println(ret);
         return ret;
     }
-
 
     public static void stringParseExample() {
         String line = "bla bla blah";
@@ -327,13 +340,13 @@ public class FileReaderTemplate {
     }
 
     public static void parseErrorsFromConsole() {
-        String fileName = "/Users/tdiprima/Desktop/biglogfile.log";
+        String fileName = System.getProperty("user.home") + "/Desktop/biglogfile.log";
 
         String line;
 
         try {
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader
+                    = new FileReader(fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             boolean flag = false;
@@ -360,14 +373,12 @@ public class FileReaderTemplate {
     }
 
     /**
-     * Ha.
-     * Remove the first n chars
-     * from each line of history file.
+     * Ha. Remove the first n chars from each line of history file.
      */
     public static void rewriteHistory() {
 
         // TODO: history > history-file.sh
-        String s = "/Users/tdiprima/Desktop/segloader-commands.sh";
+        String s = System.getProperty("user.home") + "/Desktop/han_data04A.list";
         int len = 4;
 
         try {
@@ -376,8 +387,13 @@ public class FileReaderTemplate {
             String l;
             while ((l = br.readLine()) != null) {
                 try {
-                    if (l.trim().length() > 0) {
-                        System.out.println((l.trim().substring(len)).trim());
+                    int len1 = l.trim().length();
+                    if (len1 > 0) {
+                        String x = (l.trim().substring(len)).trim();
+                        if (x.contains("/")) {
+                            System.out.println(x.substring(x.indexOf("/")));
+                        }
+
                     }
                 } catch (StringIndexOutOfBoundsException iii) {
                     System.out.println("here:" + l);
@@ -386,7 +402,7 @@ public class FileReaderTemplate {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("\nTHE END\n");
+            // System.out.println("\nTHE END\n");
         }
 
     }

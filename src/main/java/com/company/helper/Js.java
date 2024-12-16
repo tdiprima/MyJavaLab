@@ -40,7 +40,6 @@ public class Js extends Program {
                     // TODO
 //                    sb.append("debugger");
 //                    sb.append("\n");
-
                 } else {
                     sb.append(line + "\n");
                 }

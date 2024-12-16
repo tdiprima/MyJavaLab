@@ -7,6 +7,7 @@ import java.io.FileReader;
  * Created by tdiprima on 2/9/18.
  */
 public class Java extends Program {
+
     /*
     @Override
     public String readIt(String fileWithPath) throws Exception {
@@ -26,9 +27,9 @@ public class Java extends Program {
         bufferedReader.close();
         return "".toString();
     }
-    */
+     */
 
-    /*
+ /*
     @Override
     public String readIt(String fileWithPath) throws Exception {
 
@@ -67,7 +68,6 @@ public class Java extends Program {
         bufferedReader.close();
         return sb.toString();
     }*/
-
     @Override
     public String readIt(String fileWithPath) throws Exception {
 
@@ -93,7 +93,6 @@ public class Java extends Program {
                     sb.append("\");");
                     sb.append("\n");
 
-
                 } else {
                     sb.append(line + "\n");
                 }
@@ -107,9 +106,7 @@ public class Java extends Program {
                     sb.append("//TODO: FILE SYSTEM\n");
                     sb.append("//" + line + "\n");
                     sb.append(line + "\n");
-                }
-                else
-                {
+                } else {
                     sb.append(line + "\n");
                 }
 

@@ -14,7 +14,7 @@ public class FindDistinct {
 
     public static void main(String[] args) {
         // The name of the file to open.
-        String fileName = "/Users/tdiprima/job213/manifest.list";
+        String fileName = System.getProperty("user.home") + "/job213/manifest.list";
 //        findDupe(fileName);
         process(fileName, "");
 
@@ -57,7 +57,6 @@ public class FindDistinct {
         } catch (IOException e) {
         }
     }
-
 
     public static void process(String fileName, String search) {
 
@@ -166,7 +165,6 @@ public class FindDistinct {
 
                 }
 
-
             } else {
                 // jQuery, addEvent, addButton, bind, etc.
                 //ret = inputStr.trim();
@@ -177,7 +175,6 @@ public class FindDistinct {
         return ret;
 
     }
-
 
     /**
      * Distinct or Repeated

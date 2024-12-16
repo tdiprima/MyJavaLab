@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        String topLevelDir = "/Users/tdiprima/trabajo/myOpenSeadragon/openseadragon-2.4.2/src/";
+        String topLevelDir = System.getProperty("user.home") + "/trabajo/myOpenSeadragon/openseadragon-2.4.2/src/";
 
         // boolean warn = true;
         boolean warn = false;
@@ -23,7 +23,7 @@ public class Main {
         }
         // processFiles(topLevelDir, new Js());
 
-        String filename = "/Users/tdiprima/trabajo/filtering/js/openseadragon-filtering.js";
+        String filename = System.getProperty("user.home") + "/trabajo/filtering/js/openseadragon-filtering.js";
         oneFile(filename, new Js());
     }
 

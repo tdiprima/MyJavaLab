@@ -21,11 +21,11 @@ public class Cxx {
         String line;
 
         try {
-            java.io.FileReader fileReader =
-                    new java.io.FileReader(fname);
+            java.io.FileReader fileReader
+                    = new java.io.FileReader(fname);
 
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
+            BufferedReader bufferedReader
+                    = new BufferedReader(fileReader);
 
             while ((line = bufferedReader.readLine()) != null) {
 

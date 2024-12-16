@@ -32,6 +32,6 @@ public abstract class Program {
         writer.close();
     }
 
-  public void doIO(String fileWithPath) {
-  }
+    public void doIO(String fileWithPath) {
+    }
 }

@@ -1,4 +1,4 @@
-package com.crunchify.tutorial;
+package com.crunchify;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +27,7 @@ public class CrunchifyIterateThroughList {
             System.out.println(CrunchifyList.get(i));
         }
 
-        // iterate via "New way to loop"
+        // iterate via "enhanced for loop", aka "for-each loop"
         System.out.println("\n==> Advanced For-Loop Example..");
         for (String temp : CrunchifyList) {
             System.out.println(temp);
