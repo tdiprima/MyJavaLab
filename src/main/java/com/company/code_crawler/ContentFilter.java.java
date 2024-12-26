@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static com.company.code_crawler.RewriteCodeConsoleOut.findFiles;
 
-public class FiberOne {
+public class ContentFilter {
 
     public static void main(String[] args) {
         try {
