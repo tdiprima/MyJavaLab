@@ -1,10 +1,16 @@
-// javac LogReplacer.java
-// java LogReplacer
 import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Scans your source code files and replaces all System.out.println calls with SLF4J logging
+ * Put in directory root
+ * javac LogReplacer.java
+ * java LogReplacer
+ * 
+ * @author tdiprima
+ */
 public class LogReplacer {
     private static final String LOGGER_DECLARATION = "import org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n";
     private static final String LOGGER_INSTANCE = "    private static final Logger logger = LoggerFactory.getLogger(%s.class);\n";
