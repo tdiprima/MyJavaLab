@@ -1,12 +1,17 @@
 package com.tdiprima.code_crawler;
 
-import com.tdiprima.code_commenter.Program;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import static com.tdiprima.code_crawler.RewriteCodeConsoleOut.findFiles;
 
+/**
+ * Scans files in a specified directory, searches for lines containing "script" or "link"
+ * tags, prints them to the console, and provides methods to read and write file contents.
+ * 
+ * @author tdiprima
+ */
 public class ContentFilter {
 
     public static void main(String[] args) {
@@ -36,29 +41,25 @@ public class ContentFilter {
 
     public static String readIt(String fileWithPath) throws Exception {
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileWithPath));
-        // StringBuffer sb = new StringBuffer();
-
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            if (line.contains("<script") || line.contains("<link")) {
-                // sb.append(line);
-                System.out.println(line.trim());
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileWithPath))
+        ) {
+            // StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains("<script") || line.contains("<link")) {
+                    // sb.append(line);
+                    System.out.println(line.trim());
+                }
             }
         }
-
-        bufferedReader.close();
         // return sb.toString();
         return "";
     }
 
     public static void writeIt(String contents, String fileOUT) throws Exception {
 
-        Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(fileOUT), "utf-8"));
-
-        writer.write(contents);
-
-        writer.close();
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileOUT), "utf-8"))) {
+            writer.write(contents);
+        }
     }
 }

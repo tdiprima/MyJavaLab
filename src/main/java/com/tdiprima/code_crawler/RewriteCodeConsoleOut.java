@@ -8,6 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Processes files in a specified directory, identifies files of a given programming 
+ * language (e.g., JavaScript, Python, or C++), and applies transformations or 
+ * modifications using language-specific handlers.
+ * 
+ * @author tdiprima
+ */
 public class RewriteCodeConsoleOut {
 
     /**

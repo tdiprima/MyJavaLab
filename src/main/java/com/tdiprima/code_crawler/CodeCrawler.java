@@ -3,7 +3,11 @@ package com.tdiprima.code_crawler;
 import java.io.*;
 
 /**
- * Created by tdiprima on 3/30/17.
+ * Reads files, searches for specific patterns, and filters lines based on predefined rules.
+ * It is useful for extracting function definitions, tracking certain keywords, or debugging 
+ * code changes in JavaScript and C++ projects.
+ * 
+ * @author tdiprima, 3/30/17
  */
 public class CodeCrawler {
 
