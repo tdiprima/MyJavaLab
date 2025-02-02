@@ -1,6 +1,6 @@
 package com.tdiprima.code_crawler;
 
-import com.tdiprima.helper.Program;
+import com.tdiprima.code_commenter.Program;
 
 import java.io.*;
 import java.util.ArrayList;

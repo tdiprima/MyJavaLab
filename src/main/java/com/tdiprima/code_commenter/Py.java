@@ -6,7 +6,7 @@
  * TODO: Is indent 2 or 4.
  *
  */
-package com.tdiprima.helper;
+package com.tdiprima.code_commenter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

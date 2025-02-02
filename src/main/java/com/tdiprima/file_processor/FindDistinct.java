@@ -1,8 +1,13 @@
-package com.tdiprima.bear;
+package com.tdiprima.file_processor;
 
 import java.io.*;
 import java.util.*;
 
+/**
+ * Identifies unique and duplicate lines in a file
+ *
+ * @author tdiprima
+ */
 public class FindDistinct {
 
     static FileReader fileReader;

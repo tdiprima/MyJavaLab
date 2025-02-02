@@ -1,8 +1,13 @@
-package com.tdiprima.bear;
+package com.tdiprima.file_processor;
 
 import java.io.*;
 import java.util.*;
 
+/**
+ * Reads a file and looks for specific content
+ *
+ * @author tdiprima
+ */
 public class FileReaderTemplate {
 
     public static void main(String[] args) {

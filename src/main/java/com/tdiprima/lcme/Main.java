@@ -1,7 +1,7 @@
 /*
  * File Maker -- Start
  */
-package com.tdiprima.filereader;
+package com.tdiprima.lcme;
 
 import java.io.IOException;
 import java.util.ArrayList;

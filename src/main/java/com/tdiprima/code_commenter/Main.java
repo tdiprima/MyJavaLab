@@ -1,11 +1,15 @@
-package com.tdiprima.bear;
+package com.tdiprima.code_commenter;
 
-import com.tdiprima.helper.Program;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Runs the program and processes files using Js.java or Py.java
+ * 
+ * @author tdiprima
+ */
 public class Main {
     public static void main(String[] args) {
         String topLevelDir = System.getProperty("user.home") + "/trabajo/myOpenSeadragon/openseadragon-2.4.2/src/";

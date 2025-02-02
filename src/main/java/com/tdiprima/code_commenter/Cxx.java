@@ -1,4 +1,4 @@
-package com.tdiprima.helper;
+package com.tdiprima.code_commenter;
 
 import java.io.BufferedReader;
 
